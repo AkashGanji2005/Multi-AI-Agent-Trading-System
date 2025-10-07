@@ -1,0 +1,340 @@
+# Configuration file for different marketplace scenarios
+
+scenarios:
+  balanced:
+    name: "Balanced Marketplace"
+    description: "A balanced marketplace with equal representation of all agent types"
+    environment:
+    num_agents: 15
+    max_steps: 1000
+    resource_types: ["energy", "data", "goods", "services"]
+    initial_resources:
+      energy: 100
+      data: 100
+      goods: 100
+      services: 100
+    communication_enabled: true
+    alliance_enabled: true
+    regulation_enabled: true
+  
+  agents:
+    distribution:
+      buyer: 0.3
+      seller: 0.3
+      regulator: 0.1
+      mediator: 0.1
+      speculator: 0.2
+    
+    buyer:
+      initial_cash_range: [1000, 5000]
+      quality_threshold: 0.6
+      urgency_factor: 0.8
+      cooperation_tendency: 0.7
+    
+    seller:
+      initial_cash_range: [500, 3000]
+      profit_margin_target: 0.25
+      inventory_turnover_target: 0.8
+      cooperation_tendency: 0.6
+    
+    regulator:
+      initial_cash_range: [10000, 50000]
+      fairness_threshold: 0.7
+      price_manipulation_threshold: 0.3
+      cooperation_tendency: 0.8
+    
+    mediator:
+      initial_cash_range: [2000, 10000]
+      base_mediation_fee: 50
+      success_bonus_rate: 0.1
+      cooperation_tendency: 0.9
+    
+    speculator:
+      initial_cash_range: [5000, 25000]
+      profit_target: 0.5
+      max_drawdown: 0.3
+      cooperation_tendency: 0.4
+  
+  training:
+    algorithm: "PPO"
+    learning_rate: 3e-4
+    num_iterations: 1000
+    batch_size: 512
+    num_workers: 4
+
+# Energy trading scenario
+energy_trading:
+  name: "Energy Trading Market"
+  description: "Specialized energy marketplace with producers, consumers, and grid operators"
+  environment:
+    num_agents: 20
+    max_steps: 1500
+    resource_types: ["energy"]
+    initial_resources:
+      energy: 200
+    communication_enabled: true
+    alliance_enabled: true
+    regulation_enabled: true
+    market_volatility: 0.15
+  
+  agents:
+    distribution:
+      buyer: 0.4    # Energy consumers
+      seller: 0.35  # Energy producers  
+      regulator: 0.1 # Grid operator
+      mediator: 0.05 # Energy broker
+      speculator: 0.1 # Energy trader
+    
+    buyer:
+      initial_cash_range: [2000, 8000]
+      quality_threshold: 0.8  # High quality requirement for energy
+      urgency_factor: 0.9     # Energy is critical
+      demand_pattern: "industrial"  # Industrial energy consumers
+    
+    seller:
+      initial_cash_range: [1000, 5000]
+      capacity_factor: 0.85   # Power plant capacity utilization
+      renewable_mix: 0.3      # 30% renewable energy
+      production_cost: 40     # Cost per unit
+    
+    regulator:
+      grid_stability_weight: 0.8
+      renewable_incentive: 0.2
+      peak_demand_management: true
+    
+    speculator:
+      volatility_trading_weight: 0.9
+      weather_sensitivity: 0.7
+      storage_capacity: 1000
+  
+  training:
+    algorithm: "PPO"
+    learning_rate: 2e-4
+    num_iterations: 1500
+    curriculum_enabled: true
+    curriculum_stages:
+      - name: "basic_trading"
+        max_agents: 8
+        max_steps: 500
+        iterations: 300
+      - name: "peak_demand"
+        max_agents: 15
+        max_steps: 1000
+        iterations: 600
+      - name: "full_market"
+        max_agents: 20
+        max_steps: 1500
+        iterations: 600
+
+# Data marketplace scenario
+data_marketplace:
+  name: "Data Marketplace"
+  description: "Privacy-focused data trading with quality verification"
+  environment:
+    num_agents: 15
+    max_steps: 1200
+    resource_types: ["data"]
+    initial_resources:
+      data: 150
+    communication_enabled: true
+    alliance_enabled: true
+    regulation_enabled: true
+    privacy_enforcement: true
+  
+  agents:
+    distribution:
+      buyer: 0.35   # Data consumers
+      seller: 0.25  # Data providers
+      regulator: 0.15 # Privacy regulator
+      mediator: 0.15  # Data broker
+      speculator: 0.1  # Data aggregator
+    
+    buyer:
+      data_types_needed: ["user_behavior", "market_research", "sensor_data"]
+      privacy_sensitivity: 0.8
+      quality_verification: true
+    
+    seller:
+      data_quality_range: [0.6, 0.95]
+      anonymization_level: 0.8
+      consent_verification: true
+    
+    regulator:
+      gdpr_compliance: true
+      audit_frequency: 0.2
+      penalty_multiplier: 2.0
+    
+    mediator:
+      quality_assurance: true
+      privacy_certification: true
+      escrow_services: true
+  
+  training:
+    algorithm: "SAC"  # Better for continuous action spaces
+    learning_rate: 3e-4
+    num_iterations: 1200
+
+# Financial market scenario
+financial_market:
+  name: "Financial Market"
+  description: "High-frequency financial trading with sophisticated agents"
+  environment:
+    num_agents: 30
+    max_steps: 2000
+    resource_types: ["securities", "bonds", "derivatives", "currencies"]
+    initial_resources:
+      securities: 50
+      bonds: 75
+      derivatives: 25
+      currencies: 1000
+    communication_enabled: true
+    alliance_enabled: false  # Limited alliances in financial markets
+    regulation_enabled: true
+    high_frequency_trading: true
+  
+  agents:
+    distribution:
+      buyer: 0.25   # Institutional investors
+      seller: 0.25  # Market makers
+      regulator: 0.1 # Financial regulator
+      mediator: 0.05 # Financial advisor
+      speculator: 0.35 # Hedge funds and traders
+    
+    buyer:
+      investment_strategy: "long_term"
+      risk_tolerance: 0.4
+      portfolio_diversification: 0.8
+    
+    seller:
+      market_making: true
+      spread_optimization: true
+      inventory_management: "advanced"
+    
+    regulator:
+      systemic_risk_monitoring: true
+      circuit_breakers: true
+      position_limits: true
+    
+    speculator:
+      trading_frequency: "high"
+      leverage_limit: 5.0
+      algorithmic_trading: true
+      market_impact_model: true
+  
+  training:
+    algorithm: "DQN"
+    learning_rate: 1e-4
+    num_iterations: 2000
+    target_network_update_freq: 1000
+
+# Commodity exchange scenario
+commodity_exchange:
+  name: "Commodity Exchange"
+  description: "Agricultural and raw material trading with seasonal patterns"
+  environment:
+    num_agents: 25
+    max_steps: 1800
+    resource_types: ["wheat", "oil", "gold", "copper"]
+    initial_resources:
+      wheat: 80
+      oil: 120
+      gold: 30
+      copper: 100
+    seasonal_patterns: true
+    storage_costs: true
+    transportation_costs: true
+  
+  agents:
+    distribution:
+      buyer: 0.3
+      seller: 0.3
+      regulator: 0.05
+      mediator: 0.1
+      speculator: 0.25
+    
+    buyer:
+      industrial_demand: true
+      seasonal_planning: true
+      contract_preferences: "futures"
+    
+    seller:
+      production_cycles: true
+      weather_dependency: 0.6
+      storage_capacity_limits: true
+    
+    speculator:
+      commodity_expertise: true
+      weather_analysis: true
+      global_supply_tracking: true
+  
+  training:
+    algorithm: "PPO"
+    learning_rate: 3e-4
+    num_iterations: 1800
+
+# Test scenario for development
+test:
+  name: "Test Scenario"
+  description: "Small-scale scenario for testing and development"
+  environment:
+    num_agents: 8
+    max_steps: 200
+    resource_types: ["energy", "data"]
+    initial_resources:
+      energy: 50
+      data: 50
+    communication_enabled: true
+    alliance_enabled: true
+    regulation_enabled: true
+  
+  agents:
+    distribution:
+      buyer: 0.25
+      seller: 0.25
+      regulator: 0.125
+      mediator: 0.125
+      speculator: 0.25
+  
+  training:
+    algorithm: "PPO"
+    learning_rate: 3e-4
+    num_iterations: 100
+    num_workers: 2
+    batch_size: 256
+
+# Advanced multi-market scenario
+multi_market:
+  name: "Multi-Market Ecosystem"
+  description: "Complex ecosystem with interconnected markets"
+  environment:
+    num_agents: 40
+    max_steps: 2500
+    resource_types: ["energy", "data", "goods", "services", "carbon_credits"]
+    initial_resources:
+      energy: 100
+      data: 100
+      goods: 100
+      services: 100
+      carbon_credits: 50
+    cross_market_effects: true
+    carbon_trading: true
+    sustainability_metrics: true
+  
+  agents:
+    distribution:
+      buyer: 0.25
+      seller: 0.25
+      regulator: 0.15
+      mediator: 0.15
+      speculator: 0.2
+    
+    sustainability_focus: true
+    esg_compliance: true
+    carbon_footprint_tracking: true
+  
+  training:
+    algorithm: "PPO"
+    learning_rate: 2e-4
+    num_iterations: 2500
+    curriculum_enabled: true
+    multi_objective_optimization: true

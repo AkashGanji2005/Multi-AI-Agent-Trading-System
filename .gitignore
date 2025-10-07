@@ -1,0 +1,43 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+.env
+.env.*
+*.env
+.venv*/
+.venv*/**
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.coverage
+.coverage.*
+dist/
+build/
+site/
+.cache/
+
+# Project artifacts
+logs/
+data/
+checkpoints/
+outputs/
+wandb/
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Docker volumes (local data only; compose files remain tracked)
+redis_data/
+elasticsearch_data/
+mongodb_data/
+cassandra_data/
+grafana_data/
+influxdb_data/

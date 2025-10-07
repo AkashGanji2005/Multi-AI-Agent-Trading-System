@@ -1,0 +1,24 @@
+# Basic AI Negotiator Requirements (Compatible with Python 3.13)
+torch>=2.0.0
+numpy>=1.24.0
+gymnasium>=0.28.0
+stable-baselines3>=2.0.0
+matplotlib>=3.7.0
+pandas>=2.0.0
+pyyaml>=6.0
+streamlit>=1.28.0
+plotly>=5.15.0
+networkx>=3.1
+seaborn>=0.12.0
+scikit-learn>=1.3.0
+python-dotenv>=1.0.0
+loguru>=0.7.0
+typer>=0.9.0
+rich>=13.0.0
+
+# Big Data (Optional - install separately if needed)
+# pyspark>=3.4.0
+# kafka-python>=2.0.2
+# redis>=4.5.0
+# elasticsearch>=8.8.0
+# pymongo>=4.4.0

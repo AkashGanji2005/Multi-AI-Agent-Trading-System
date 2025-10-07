@@ -1,0 +1,66 @@
+scenarios:
+  balanced:
+    description: "Balanced marketplace with equal agent types"
+    agents: 8
+    steps: 100
+    agent_distribution:
+      buyer: 0.3
+      seller: 0.3
+      regulator: 0.1
+      mediator: 0.1
+      speculator: 0.2
+  
+  energy_trading:
+    description: "Energy trading marketplace"
+    agents: 10
+    steps: 200
+    resource_focus: ["energy"]
+    agent_distribution:
+      buyer: 0.4
+      seller: 0.4
+      regulator: 0.1
+      speculator: 0.1
+  
+  data_marketplace:
+    description: "Data trading and analytics marketplace"
+    agents: 12
+    steps: 150
+    resource_focus: ["data"]
+    agent_distribution:
+      buyer: 0.35
+      seller: 0.35
+      mediator: 0.15
+      speculator: 0.15
+  
+  financial_market:
+    description: "High-frequency financial trading simulation"
+    agents: 20
+    steps: 500
+    agent_distribution:
+      buyer: 0.25
+      seller: 0.25
+      regulator: 0.15
+      speculator: 0.35
+  
+  commodity_exchange:
+    description: "Physical goods and commodity trading"
+    agents: 15
+    steps: 300
+    resource_focus: ["goods"]
+    agent_distribution:
+      buyer: 0.4
+      seller: 0.4
+      mediator: 0.1
+      speculator: 0.1
+  
+  multi_market:
+    description: "Complex multi-resource marketplace"
+    agents: 25
+    steps: 400
+    resource_focus: ["energy", "data", "goods", "services"]
+    agent_distribution:
+      buyer: 0.3
+      seller: 0.3
+      regulator: 0.1
+      mediator: 0.1
+      speculator: 0.2
